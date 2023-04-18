@@ -3,18 +3,11 @@ import sys
 
 
 def main():
-    print(len(sys.argv));
     if len(sys.argv) != 6:
         print('Error: Required 5 arguments.')
         # Checks for 6 because the script path is in position 0. So len is 6
         # for 5 arguments.
         sys.exit(1)
-    print(sys.argv[1]);
-    print(sys.argv[2]);
-    print(sys.argv[3]);
-    print(sys.argv[4]);
-    print(sys.argv[5]);
-    
 
     bucket_name = sys.argv[1]
     aws_key = sys.argv[2]
