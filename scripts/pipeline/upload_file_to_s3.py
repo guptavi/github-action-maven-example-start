@@ -12,6 +12,7 @@ def main():
         print(sys.argv[3]);
         print(sys.argv[4]);
         print(sys.argv[5]);
+        print(sys.argv[6]);
         sys.exit(1)
     print(sys.argv[1]);
     print(sys.argv[2]);
