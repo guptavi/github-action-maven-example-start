@@ -37,10 +37,11 @@ jobs:
         with:
           java-version: 14
       - run: mvn -B package --file pom.xml -DskipTests
-      - name: Release to S3
-      - run: bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "folder1/myapp.zip" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "myapp.zip"
       - run: mkdir staging && cp target/*jar-with-dependencies.jar staging
       - uses: actions/upload-artifact@v1
         with:
           name: Package
           path: staging
+      - name: Release to S3
+      - uses: actions/checkout@v1
+      - run: bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "folder1/myapp.zip" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "myapp.zip"
