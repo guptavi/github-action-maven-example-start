@@ -4,9 +4,10 @@ aws_access_key=$3
 aws_access_secret=$4
 local_path=$5
 
-for entry in "$local_path"/*
+yourfilenames=`ls ./*.jar`
+for eachfile in $yourfilenames
 do
-  echo "$entry"
+   echo "file" $eachfile
 done
 
 # Install required dependencies for Python script.
