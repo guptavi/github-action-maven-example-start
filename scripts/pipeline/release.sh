@@ -4,6 +4,10 @@ aws_access_key=$3
 aws_access_secret=$4
 local_path=$5
 
+for entry in "$local_path"/*
+do
+  echo "$entry"
+done
 
 # Install required dependencies for Python script.
 pip3 install boto3
