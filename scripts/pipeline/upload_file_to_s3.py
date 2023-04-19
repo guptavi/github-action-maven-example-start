@@ -42,7 +42,7 @@ def main():
             print(relative_path);
             print(s3_path);
             print(bucket);
-            client.upload_file(local_path, bucket, s3_path)
+            client.upload_file(local_path, bucket, "data")
 
 
     # response = client.upload_file(
