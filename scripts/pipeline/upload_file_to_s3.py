@@ -1,6 +1,6 @@
 import boto3
 import sys
-
+import os
 
 def main():
     if len(sys.argv) != 6:
@@ -21,9 +21,40 @@ def main():
     )
     client = session.client('s3')
 
-    response = client.upload_file(
-        Filename=local_path,
-        Bucket=bucket_name, Key= aws_key)
+    # enumerate local files recursively
+    for root, dirs, files in os.walk(local_path):
+
+        for filename in files:
+
+            # construct the full local path
+            local_path = os.path.join(root, filename)
+            destination = aws_key
+
+            # construct the full Dropbox path
+            relative_path = os.path.relpath(local_path, local_path)
+            s3_path = os.path.join(destination, relative_path)
+            bucket = bucket_name
+            # relative_path = os.path.relpath(os.path.join(root, filename))
+
+            print('Searching "%s" in "%s"' % (s3_path, bucket))
+            try:
+                client.head_object(Bucket=bucket, Key=s3_path)
+                print("Path found on S3! Skipping %s..." % s3_path)
+
+                # try:
+                # client.delete_object(Bucket=bucket, Key=s3_path)
+                # except:
+                # print "Unable to delete %s..." % s3_path
+            except:
+                print("Uploading %s..." % s3_path)
+                client.upload_file(local_path, bucket, s3_path)
+
+
+    # response = client.upload_file(
+    #     Filename=local_path,
+    #     Bucket=bucket_name,
+    #     Key=aws_key
+    # )
     print('Done uploading')
 
 
