@@ -37,6 +37,11 @@ def main():
             # relative_path = os.path.relpath(os.path.join(root, filename))
 
             print('Searching "%s" in "%s"' % (s3_path, bucket))
+            print(destination);
+            print(local_path);
+            print(relative_path);
+            print(s3_path);
+            print(bucket);
             try:
                 client.head_object(Bucket=bucket, Key=s3_path)
                 print("Path found on S3! Skipping %s..." % s3_path)
