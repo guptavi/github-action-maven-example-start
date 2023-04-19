@@ -22,4 +22,4 @@ jobs:
           name: Package
           path: staging
       - name: Release to S3
-        run : bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "Builds" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "target/*jar-with-dependencies.jar"
+        run : bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "Builds/" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "myapp.zip"
