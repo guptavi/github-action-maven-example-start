@@ -4,11 +4,11 @@ aws_access_key=$3
 aws_access_secret=$4
 local_path=$5
 
-yourfilenames=`ls ./*.jar`
-for eachfile in $yourfilenames
-do
-   echo "file" $eachfile
-done
+# Remove any existing versions of a ZIP
+rm -rf $local_path
+
+# Create a zip of the current directory.
+zip -r $local_path . -x .git/ .git/*** .github/workflows/release.yml scripts/pipeline/release.sh scripts/pipeline/upload_file_to_s3.py .DS_Store src/***
 
 # Install required dependencies for Python script.
 pip3 install boto3
