@@ -23,7 +23,7 @@ def main():
 
     response = client.upload_file(
         Filename=local_path,
-        Bucket=bucket_name    )
+        Bucket=bucket_name, Key= "")
     print('Done uploading')
 
 
