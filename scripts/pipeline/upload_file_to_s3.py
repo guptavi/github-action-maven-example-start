@@ -42,17 +42,7 @@ def main():
             print(relative_path);
             print(s3_path);
             print(bucket);
-            try:
-                client.head_object(Bucket=bucket, Key=s3_path)
-                print("Path found on S3! Skipping %s..." % s3_path)
-
-                # try:
-                # client.delete_object(Bucket=bucket, Key=s3_path)
-                # except:
-                # print "Unable to delete %s..." % s3_path
-            except:
-                print("Uploading %s..." % s3_path)
-                client.upload_file(local_path, bucket, s3_path)
+            client.upload_file(local_path, bucket, s3_path)
 
 
     # response = client.upload_file(
