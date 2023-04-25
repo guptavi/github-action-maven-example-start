@@ -1,14 +1,9 @@
 name: Maven CI/CD
-env:
-  MAIN_BRANCH: master
-  DEV_BRANCH: "development"
 on:
   push:
-    branches: 
-      - master
+    branches:  [master]
   pull_request:
-    branches: 
-      - master
+    branches: [ master ]
 
 jobs:
   build_and_test:
