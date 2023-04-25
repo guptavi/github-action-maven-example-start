@@ -1,10 +1,11 @@
 name: Maven CI/CD
 env:
-  MAIN_BRANCH: "master"
+  MAIN_BRANCH: master
   DEV_BRANCH: "development"
 on:
   push:
-    branches: ${{ env.MAIN_BRANCH }}
+    branches: 
+      -master
   pull_request:
     branches: ${{ env.MAIN_BRANCH }}
 
