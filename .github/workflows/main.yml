@@ -1,7 +1,8 @@
-name: Maven CI/CD pipe
+name: Maven CI/CD
+
 on:
   push:
-    branches:  [master]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -41,5 +42,5 @@ jobs:
         with:
           name: Package
           path: staging
-      - name: Release to S3B
-        run : bash scripts/pipeline/release.sh ${{secrets.AWS_ucket_Name}} "build.jar" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "target/github-action-maven-tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar"
+      - name: Release to S3
+        run : bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "build.jar" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "target/github-action-maven-tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar"
