@@ -2,9 +2,9 @@ name: Maven CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: ${{ vars.BRANCH_LIST }}
   pull_request:
-    branches: [ master ]
+    branches: ${{ vars.BRANCH_LIST }}
 
 jobs:
   build_and_test:
