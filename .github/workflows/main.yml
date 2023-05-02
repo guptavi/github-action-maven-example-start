@@ -10,13 +10,24 @@ jobs:
   build_and_test:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: [main, develop, feature-branch]
+    env:
+      main: master
+      develop: master
+      feature-branch: master
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ env[matrix.branch] }}
       - name: Set up JDK 14
         uses: actions/setup-java@v1
         with:
           java-version: 14
+          distribution: 'adopt'
+          cache: maven
 
       - name: Cache the Maven packages to speed up build
         uses: actions/cache@v1
