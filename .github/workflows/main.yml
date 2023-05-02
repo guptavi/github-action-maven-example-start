@@ -2,9 +2,7 @@ name: Maven CI/CD Pipe
 
 on:
   push:
-    branches: [ dev ]
   pull_request:
-    branches: [ dev ]
 
 jobs:
   build_and_test:
@@ -12,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [main, develop, feature-branch]
+        branch: [ main ]
     env:
-      main: master
-      develop: master
-      feature-branch: master
+      main: ${{ secrets.BRANCH_LIST }}
 
     steps:
       - uses: actions/checkout@v2
